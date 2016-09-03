@@ -1,5 +1,8 @@
 package com.namanmart.store.dao.impl;
 
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,21 @@ public class ProductDaoImpl implements ProductDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Product> loadProductList() {
+		
+		Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Product");
+        List<Product> productList = query.list();
+        session.flush();
+
+        return productList;
+	}
+	
 	public Product loadProductById(int productId) {
 		
 		Session session = sessionFactory.getCurrentSession();
@@ -23,6 +41,29 @@ public class ProductDaoImpl implements ProductDao {
         session.flush();
 
         return product;
+	}
+
+	public void insertProduct(Product product) {
+
+		Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(product);
+        session.flush();
+		
+	}
+
+	public void modifyProduct(Product product) {
+		
+		Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(product);
+        session.flush();
+		
+	}
+
+	public void deleteProduct(Product product) {
+		
+		Session session = sessionFactory.getCurrentSession();
+        session.delete(product);
+        session.flush();
 	}
 
 }

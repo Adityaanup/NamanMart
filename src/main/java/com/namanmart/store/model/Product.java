@@ -1,22 +1,55 @@
 package com.namanmart.store.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+@Entity
 public class Product implements Serializable {
 
 	private static final long serialVersionUID = -3566887082311508646L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int productId;
+	
+	@NotEmpty(message = "The product name must not be empty")
 	private String productName;
 	private String productCategory;
 	private String productDescription;
+	
+	@Min(value = 0, message = "The product price must not be less then zero")
 	private double productPrice;
     private String productCondition;
     private String productStatus;
+    
+    @Min(value = 0, message = "The product unit must not be less then zero")
     private int unitInStock;
     private String productManufacturer;
-    private String productImage;
     
+    @Transient
+    private MultipartFile productImage;
+    
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<CartItem> cartItemList;
+ 
+
 	public int getProductId() {
 		return productId;
 	}
@@ -89,15 +122,22 @@ public class Product implements Serializable {
 		this.productManufacturer = productManufacturer;
 	}
 	
-	public String getProductImage() {
-		return productImage;
-	}
-	
-	public void setProductImage(String productImage) {
-		this.productImage = productImage;
-	}
-    
-    
-    
+	public MultipartFile getProductImage() {
+        return productImage;
+    }
 
+    public void setProductImage(MultipartFile productImage) {
+        this.productImage = productImage;
+    }
+
+
+    public List<CartItem> getCartItemList() {
+        return cartItemList;
+    }
+
+    public void setCartItemList(List<CartItem> cartItemList) {
+        this.cartItemList = cartItemList;
+    }
+    
+    
 }

@@ -9,9 +9,6 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
         
         
-        <bean id="service" class="com.spring.service.EmployeeServiceImpl">
-        	<property name="dao" ref="dao" />
-        </bean>
-        
+        <bean id="productService" class="com.namanmart.store.service.impl.ProductServiceImpl" />        
         
 </beans>

@@ -9,7 +9,7 @@
   <url>http://maven.apache.org</url>
   
   <properties>
-  	<spring.version>4.0.2.RELEASE</spring.version>
+  	<spring.version>4.2.4.RELEASE</spring.version>
   	<hibernate.version>4.3.5.Final</hibernate.version>
   	<org.aspectj-version>1.7.4</org.aspectj-version>
   </properties>
@@ -18,9 +18,14 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>4.12</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+        <groupId>org.mockito</groupId>
+    	<artifactId>mockito-all</artifactId>
+    	<version>1.10.19</version>
+	</dependency>
     
     <!-- Spring Core dependencies -->
 	<dependency>
@@ -50,6 +55,12 @@
 		<version>${spring.version}</version>
 	</dependency>
 	
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-test</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	
 	<!-- AspectJ dependencies -->
 	<dependency>
 		<groupId>org.aspectj</groupId>
@@ -70,6 +81,14 @@
 		<artifactId>hibernate-entitymanager</artifactId>
 		<version>${hibernate.version}</version>
 	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+	<dependency>
+    	<groupId>org.hibernate</groupId>
+    	<artifactId>hibernate-validator</artifactId>
+    	<version>5.2.4.Final</version>
+	</dependency>
+	
 	
 	<!-- Java Servlet and JSP dependencies -->
 	<dependency>
@@ -99,12 +118,27 @@
 		<version>1.4</version>
 	</dependency>
 	
-	<!-- Postgresql Connector Java dependency (JDBC driver for Postgresql) -->
+	<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 	<dependency>
-		<groupId>postgresql</groupId>
-		<artifactId>postgresql</artifactId>
-		<version>9.0-801.jdbc4</version>
+    	<groupId>mysql</groupId>
+    	<artifactId>mysql-connector-java</artifactId>
+    	<version>5.1.38</version>
 	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+	<dependency>
+    	<groupId>com.fasterxml.jackson.core</groupId>
+    	<artifactId>jackson-core</artifactId>
+    	<version>2.7.5</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+	<dependency>
+    	<groupId>com.fasterxml.jackson.core</groupId>
+    	<artifactId>jackson-annotations</artifactId>
+    	<version>2.7.5</version>
+	</dependency>
+	
 	
 	<!-- logging dependencies -->
 	<dependency>

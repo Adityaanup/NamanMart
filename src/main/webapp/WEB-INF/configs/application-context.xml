@@ -14,5 +14,6 @@
  		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
  		
  	<import resource="persistence-beans.xml"/>
+ 	<import resource="service-beans.xml"/>
 
 </beans>
